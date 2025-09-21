@@ -21,13 +21,13 @@ Instance.Msg("Loaded")
 
 Instance.SetThink(() => {
   const pawn = Instance.GetPlayerController(0).GetPlayerPawn();
-  const position = new Vec3(pawn.GetAbsOrigin());
+  const position = new Vec3(pawn.GetEyePosition());
 
   Instance.SetNextThink(Instance.GetGameTime());
   Instance.DebugScreenText(`Distance from 0, 0, 0: ${position.distance(Vec3.Zero)}`, 300, 50, 0.01, { r: 0xff, g: 0, b: 0xff })
 
   // Lock player's camera to 0,0,0 origin
-  const targetAngles = position.lookAt(Vec3.Zero);
+  const targetAngles = position.lookAt(new Vec3(-160.18, 1088.12, -30));
   pawn.Teleport(null, targetAngles, null)
   Instance.DebugScreenText(`Needed angles: ${targetAngles.toString()}`, 300, 80, 0.01, { r: 0xff, g: 0, b: 0xff })
 })
