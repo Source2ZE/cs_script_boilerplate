@@ -26,7 +26,7 @@ Instance.SetThink(() => {
   Instance.SetNextThink(Instance.GetGameTime());
   Instance.DebugScreenText(`Distance from 0, 0, 0: ${position.distance(Vec3.Zero)}`, 300, 50, 0.01, { r: 0xff, g: 0, b: 0xff })
 
-  // Lock player's camera to 0,0,0 origin
+  // Lock player's camera to the text sign in the script zoo map origin
   const targetAngles = position.lookAt(new Vec3(-160.18, 1088.12, -30));
   pawn.Teleport(null, targetAngles, null)
   Instance.DebugScreenText(`Needed angles: ${targetAngles.toString()}`, 300, 80, 0.01, { r: 0xff, g: 0, b: 0xff })
