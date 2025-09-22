@@ -2,7 +2,7 @@ import { Instance } from "cs_script/point_script";
 import { externalFunction } from "./test";
 import { Euler, Vec3, Vector3Utils } from '@s2ze/math'
 import { CSGearSlot, Team } from "@s2ze/types";
-import { initializeErrorWrappers } from "@s2ze/debug";
+import { initializeErrorWrappers, print } from "@s2ze/debug";
 
 initializeErrorWrappers()
 Instance.Msg("Loaded")
@@ -13,7 +13,7 @@ Instance.Msg("Loaded")
     const pawn = player.GetPlayerPawn(); // while we can teleport a controller as every entity has teleport and it does actually still teleport the player, it's still not correct
     if(pawn) {
       const weapon = pawn.FindWeaponBySlot(CSGearSlot.PISTOL);
-      Instance.Msg(weapon.toString());
+      print("Weapon:", weapon);
       player.JoinTeam(Team.T)
       pawn.Teleport(Vector3Utils.add(pawn.GetAbsOrigin(), new Vec3(0,0,20)), null, null);
       // OR
@@ -24,7 +24,10 @@ Instance.Msg("Loaded")
 }
 
 Instance.SetThink(() => {
-  const pawn = Instance.GetPlayerController(0).GetPlayerPawn();
+  const pawn = Instance.GetPlayerController(0)?.GetPlayerPawn();
+
+  if(!pawn) return;
+
   const position = new Vec3(pawn.GetEyePosition());
 
   Instance.SetNextThink(Instance.GetGameTime());
@@ -39,7 +42,9 @@ Instance.SetThink(() => {
 Instance.SetNextThink(Instance.GetGameTime());
 
 Instance.OnGameEvent("weapon_fire" as any, async () => {
-  const pawn = Instance.GetPlayerController(0).GetPlayerPawn();
+  const pawn = Instance.GetPlayerController(0)?.GetPlayerPawn();
+  if(!pawn) return;
+
   const position = new Vec3(pawn.GetAbsOrigin());
   const angles = new Euler(pawn.GetEyeAngles());
 

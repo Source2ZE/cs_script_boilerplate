@@ -1,8 +1,5 @@
 {
   "extends": "@s2ze/tsconfig",
-  "compilerOptions": {
-    "types": ["@s2ze/types/autoimport"]
-  },
   "include": ["src"],
   "exclude": ["node_modules", "build"]
 }

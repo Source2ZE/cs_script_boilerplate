@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@s2ze/debug": "^2.3.1",
-    "@s2ze/math": "^2.4.0",
-    "@s2ze/tsconfig": "^2.0.1",
-    "@s2ze/types": "^2.0.4"
+    "@s2ze/debug": "^2.6.0",
+    "@s2ze/math": "^2.6.0",
+    "@s2ze/tsconfig": "^2.6.0",
+    "@s2ze/types": "^2.6.0"
   },
   "type": "module",
   "devDependencies": {
