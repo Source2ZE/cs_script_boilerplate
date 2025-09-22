@@ -7,6 +7,31 @@ import { initializeErrorWrappers, print } from "@s2ze/debug";
 initializeErrorWrappers()
 Instance.Msg("Loaded")
 
+// This is how you can extend entity properties for extra fields, you can put this inside globals.d.ts to automatically propagate this across the entire project
+declare module "cs_script/point_script" {
+  interface Entity {
+    genericEntityField: number;
+  }
+
+  interface CSPlayerController {
+    playerSpecificField: string
+  }
+}
+
+// Example: storing entity data
+{
+  const player = Instance.GetPlayerController(0);
+  // the js object corresponds to the lifetime of the entity, if you happen to hold this in a scope even after an entity is killed the data will be still available but .IsValid() will return false
+  // it is 100% safe to store data and functions like this, this is very much an intended feature of the scripting system.
+  // !!! ALl data including globalThis and data inside entities is scoped to the v8 isolate, every point_script has it's own v8 isolate (sandbox) thus you cannot share or conflict data in any way.
+  if(player) {
+    player.playerSpecificField = "naur";
+    player.genericEntityField = 67;
+
+    print(Instance.GetPlayerController(0)?.genericEntityField)
+  }
+}
+
 {
   const player = Instance.GetPlayerController(0);
   if(player) {

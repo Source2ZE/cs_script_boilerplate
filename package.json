@@ -1,7 +1,8 @@
 {
   "dependencies": {
-    "@s2ze/debug": "^2.6.0",
+    "@s2ze/debug": "^2.6.3",
     "@s2ze/math": "^2.6.0",
+    "@s2ze/scheduler": "^2.6.0",
     "@s2ze/tsconfig": "^2.6.0",
     "@s2ze/types": "^2.6.0"
   },
