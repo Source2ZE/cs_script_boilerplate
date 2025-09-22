@@ -9,14 +9,18 @@ Instance.Msg("Loaded")
 
 {
   const player = Instance.GetPlayerController(0);
-  const pawn = player.GetPlayerPawn(); // while we can teleport a controller as every entity has teleport and it does actually still teleport the player, it's still not correct
-  const weapon = pawn.FindWeaponBySlot(CSGearSlot.PISTOL);
-  Instance.Msg(weapon.toString());
-  player.JoinTeam(Team.T)
-  pawn.Teleport(Vector3Utils.add(pawn.GetAbsOrigin(), new Vec3(0,0,20)), null, null);
-  // OR
-  const position = new Vec3(pawn.GetAbsOrigin());
-  pawn.Teleport(position.add(new Vec3(0,0,20)), null, null)
+  if(player) {
+    const pawn = player.GetPlayerPawn(); // while we can teleport a controller as every entity has teleport and it does actually still teleport the player, it's still not correct
+    if(pawn) {
+      const weapon = pawn.FindWeaponBySlot(CSGearSlot.PISTOL);
+      Instance.Msg(weapon.toString());
+      player.JoinTeam(Team.T)
+      pawn.Teleport(Vector3Utils.add(pawn.GetAbsOrigin(), new Vec3(0,0,20)), null, null);
+      // OR
+      const position = new Vec3(pawn.GetAbsOrigin());
+      pawn.Teleport(position.add(new Vec3(0,0,20)), null, null)
+    }
+  }
 }
 
 Instance.SetThink(() => {
