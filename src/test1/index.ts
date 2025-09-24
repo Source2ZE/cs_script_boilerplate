@@ -10,11 +10,12 @@ Instance.Msg("Loaded")
 // This is how you can extend entity properties for extra fields, you can put this inside globals.d.ts to automatically propagate this across the entire project
 declare module "cs_script/point_script" {
   interface Entity {
-    genericEntityField: number;
+    // you should always mark the field as optional as you cannot gurantee a default value
+    genericEntityField?: number;
   }
 
   interface CSPlayerController {
-    playerSpecificField: string
+    playerSpecificField?: string
   }
 }
 
@@ -34,6 +35,7 @@ declare module "cs_script/point_script" {
 
 {
   const player = Instance.GetPlayerController(0);
+  print("player", Instance.FindEntityByClass("player"));
   if(player) {
     const pawn = player.GetPlayerPawn(); // while we can teleport a controller as every entity has teleport and it does actually still teleport the player, it's still not correct
     if(pawn) {
