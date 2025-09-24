@@ -1,5 +1,0 @@
-{
-  "extends": "@s2ze/tsconfig",
-  "include": ["src"],
-  "exclude": ["node_modules", "build"]
-}
