@@ -2,9 +2,8 @@ import { Instance } from "cs_script/point_script";
 import { externalFunction } from "./test";
 import { Euler, Vec3, Vector3Utils } from '@s2ze/math'
 import { CSGearSlot, Team } from "@s2ze/types";
-import { initializeErrorWrappers, print } from "@s2ze/debug";
+import { print } from "@s2ze/debug";
 
-initializeErrorWrappers()
 Instance.Msg("Loaded")
 
 // This is how you can extend entity properties for extra fields, you can put this inside globals.d.ts to automatically propagate this across the entire project
@@ -68,7 +67,7 @@ Instance.SetThink(() => {
 
 Instance.SetNextThink(Instance.GetGameTime());
 
-Instance.OnGameEvent("weapon_fire" as any, async () => {
+Instance.OnGunFire(() => {
   const pawn = Instance.GetPlayerController(0)?.GetPlayerPawn();
   if(!pawn) return;
 
