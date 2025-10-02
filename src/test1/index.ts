@@ -41,10 +41,14 @@ declare module "cs_script/point_script" {
       const weapon = pawn.FindWeaponBySlot(CSGearSlot.PISTOL);
       print("Weapon:", weapon);
       player.JoinTeam(Team.T)
-      pawn.Teleport(Vector3Utils.add(pawn.GetAbsOrigin(), new Vec3(0,0,20)), null, null);
+      pawn.Teleport({
+        position: Vector3Utils.add(pawn.GetAbsOrigin(), new Vec3(0,0,20))
+      });
       // OR
       const position = new Vec3(pawn.GetAbsOrigin());
-      pawn.Teleport(position.add(new Vec3(0,0,20)), null, null)
+      pawn.Teleport({
+        position: position.add(new Vec3(0,0,20))
+      })
     }
   }
 }
@@ -57,12 +61,26 @@ Instance.SetThink(() => {
   const position = new Vec3(pawn.GetEyePosition());
 
   Instance.SetNextThink(Instance.GetGameTime());
-  Instance.DebugScreenText(`Distance from 0, 0, 0: ${position.distance(Vec3.Zero)}`, 300, 50, 0.01, { r: 0xff, g: 0, b: 0xff })
+  Instance.DebugScreenText({
+    text: `Distance from 0, 0, 0: ${position.distance(Vec3.Zero)}`,
+    x: 300,
+    y: 50,
+    duration: 0.01,
+    color: { r: 0xff, g: 0, b: 0xff }
+  })
 
   // Lock player's camera to the text sign in the script zoo map origin
   const targetAngles = position.lookAt(new Vec3(-160.18, 1088.12, -30));
-  pawn.Teleport(null, targetAngles, null)
-  Instance.DebugScreenText(`Needed angles: ${targetAngles.toString()}`, 300, 80, 0.01, { r: 0xff, g: 0, b: 0xff })
+  pawn.Teleport({
+    angles: targetAngles
+  })
+  Instance.DebugScreenText({
+    text: `Needed angles: ${targetAngles.toString()}`,
+    x: 300,
+    y: 80,
+    duration: 0.01,
+    color: { r: 0xff, g: 0, b: 0xff }
+  });
 })
 
 Instance.SetNextThink(Instance.GetGameTime());
@@ -75,6 +93,8 @@ Instance.OnGunFire(() => {
   const angles = new Euler(pawn.GetEyeAngles());
 
   // move the player to their left by 300 units when they shoot
-  pawn.Teleport(position.add(angles.left.scale(300)), null, null);
+  pawn.Teleport({
+    position: position.add(angles.left.scale(300))
+  });
   externalFunction();
 })
