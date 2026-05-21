@@ -1,7 +1,7 @@
-import { Instance } from "cs_script/point_script";
+import { CSGearSlot, Instance } from "cs_script/point_script";
 import { externalFunction } from "./test";
 import { Euler, Vec3, Vector3Utils } from '@s2ze/math'
-import { CSGearSlot, Team } from "@s2ze/types";
+import { Team } from "@s2ze/types";
 import { print } from "@s2ze/debug";
 
 Instance.Msg("Loaded")
