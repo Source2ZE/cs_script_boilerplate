@@ -1,10 +1,11 @@
 {
   "dependencies": {
-    "@s2ze/debug": "^2.18.1",
-    "@s2ze/math": "^2.18.1",
-    "@s2ze/scheduler": "^2.18.1",
-    "@s2ze/tsconfig": "^2.18.1",
-    "@s2ze/types": "^2.18.1"
+    "@s2ze/debug": "^2.20.2",
+    "@s2ze/math": "^2.20.2",
+    "@s2ze/prototype-extend": "^2.20.2",
+    "@s2ze/scheduler": "^2.20.2",
+    "@s2ze/tsconfig": "^2.20.2",
+    "@s2ze/types": "^2.20.2"
   },
   "type": "module",
   "devDependencies": {

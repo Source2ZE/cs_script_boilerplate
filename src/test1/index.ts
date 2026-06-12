@@ -1,3 +1,4 @@
+import "@s2ze/prototype-extend"
 import { CSGearSlot, Instance } from "cs_script/point_script";
 import { externalFunction } from "./test";
 import { Euler, Vec3, Vector3Utils } from '@s2ze/math'
@@ -89,12 +90,16 @@ Instance.OnGunFire(() => {
   const pawn = Instance.GetPlayerController(0)?.GetPlayerPawn();
   if(!pawn) return;
 
-  const position = new Vec3(pawn.GetAbsOrigin());
-  const angles = new Euler(pawn.GetEyeAngles());
 
   // move the player to their left by 300 units when they shoot
-  pawn.Teleport({
-    position: position.add(angles.left.scale(300))
-  });
+  // transform api
+  pawn.Transform.translateLocal(Vec3.Left.scale(300))
+
+  // classic api
+  // const position = new Vec3(pawn.GetAbsOrigin());
+  // const angles = new Euler(pawn.GetEyeAngles());
+  // pawn.Teleport({
+  //   position: position.add(angles.left.scale(300))
+  // });
   externalFunction();
 })
